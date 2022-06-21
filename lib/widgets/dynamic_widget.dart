@@ -2,6 +2,7 @@ library dynamic_widget;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dynamic_render/utils/buffer_stream.dart';
+import 'package:flutter_dynamic_render/widgets/sized_box.dart';
 
 import 'container.dart';
 
@@ -41,8 +42,7 @@ class WidgetNodeTree {
   DynamicWidget buildWidget() {
     switch (widget) {
       case SupportWidget.sizedBox:
-        // TODO: Handle this case.
-        break;
+        return DynamicSizedBox(this);
       case SupportWidget.container:
         return DynamicContainer(this);
       case SupportWidget.textFormField:

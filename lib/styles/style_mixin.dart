@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dynamic_render/styles/style_parser.dart';
 import 'package:flutter_dynamic_render/utils/num.dart';
 
 mixin SizedStyleMixin {
@@ -19,6 +20,14 @@ mixin BorderStyleMixin {
     borderRadius = attrs['borderRadius']?.toDouble() != null
         ? BorderRadius.circular(attrs['borderRadius']!.toDouble()!)
         : null;
+    border = StyleParser.parseBorder(attrs);
+  }
+}
 
+mixin ColorStyleMixin {
+  Color? color;
+
+  void setColor(Map<String, String> attrs) {
+    color = StyleParser.parseColor(attrs['color']);
   }
 }

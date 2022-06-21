@@ -1,5 +1,5 @@
 import 'package:flutter_dynamic_render/utils/buffer_stream.dart';
-import 'package:flutter_dynamic_render/widgets/dynaic_widget.dart';
+import 'package:flutter_dynamic_render/widgets/dynamic_widget.dart';
 import 'package:xml/xml.dart';
 
 WidgetNodeTree buildWidgetNodeTree(

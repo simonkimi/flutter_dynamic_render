@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-abstract class WidgetBaseStyle {}
+abstract class WidgetBaseStyle {
+  WidgetBaseStyle(this.attrs);
+  final Map<String, String> attrs;
+}
 
 class CustomBorderSide {
   CustomBorderSide({

@@ -103,7 +103,8 @@ class StyleParser {
     return null;
   }
 
-  static Color? parseColor(String color) {
+  static Color? parseColor(String? color) {
+    if (color == null) return null;
     if (color.startsWith('#') || color.startsWith('0x')) {
       final hexColor =
           color.startsWith('#') ? color.substring(1) : color.substring(2);
