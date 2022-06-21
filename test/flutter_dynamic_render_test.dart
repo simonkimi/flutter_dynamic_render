@@ -1,59 +1,22 @@
-import 'package:csslib/parser.dart';
-import 'package:csslib/visitor.dart' as css;
+import 'dart:io';
 
-class DeclarationVisitor extends css.Visitor {
-  final Map<String, Map<String, List<css.Expression>>> _result = {};
-  final Map<String, List<css.Expression>> _properties = {};
-  late String _selector;
-  late String _currentProperty;
+import 'package:xml/xml.dart';
 
-  Map<String, Map<String, List<css.Expression>>> getDeclarations(
-      css.StyleSheet sheet) {
-    for (var element in sheet.topLevels) {
-      if (element.span != null) {
-        _selector = element.span!.text;
-        element.visit(this);
-        if (_result[_selector] != null) {
-          _properties.forEach((key, value) {
-            if (_result[_selector]![key] != null) {
-              _result[_selector]![key]!
-                  .addAll(List<css.Expression>.from(value));
-            } else {
-              _result[_selector]![key] = List<css.Expression>.from(value);
-            }
-          });
-        } else {
-          _result[_selector] =
-              Map<String, List<css.Expression>>.from(_properties);
-        }
-        _properties.clear();
-      }
-    }
-    return _result;
-  }
 
-  @override
-  void visitDeclaration(css.Declaration node) {
-    _currentProperty = node.property;
-    _properties[_currentProperty] = <css.Expression>[];
-    node.expression!.visit(this);
-  }
+void main() {
+  // final file = File('./test/test.xml').readAsStringSync();
+  //
+  // final doc = XmlDocument.parse(file).rootElement;
+  //
+  // print(doc.childElements.toList()[0].name.local);
 
-  @override
-  void visitExpressions(css.Expressions node) {
-    if (_properties[_currentProperty] != null) {
-      _properties[_currentProperty]!.addAll(node.expressions);
-    } else {
-      _properties[_currentProperty] = node.expressions;
-    }
-  }
-}
+  final hasBorder = ['border'];
+  final direction = ['left', 'right', 'top', 'bottom'];
+  hasBorder.addAll(direction.map((e) => 'border-$e'));
+  hasBorder.addAll(direction.map((e) => 'border-$e-color'));
+  hasBorder.addAll(direction.map((e) => 'border-$e-style'));
+  hasBorder.addAll(direction.map((e) => 'border-$e-width'));
 
-main() {
-  var stylesheet = parse(
-      '.foo #bar #trst>.hello { color: red; left: 20px; top: 20px; width: 100px; height:200px }');
+  print(hasBorder);
 
-  final declarations = DeclarationVisitor().getDeclarations(stylesheet);
-
-  print(declarations);
 }

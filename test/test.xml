@@ -1,0 +1,21 @@
+<Center>
+    <Container width="200" padding="8" color="black12" borderRadius="5">
+        <Column>
+            <Row>
+                <Icon icon="favorite" size="20" color="blue"/>
+                <SizedBox width="5"/>
+                <Text>favourite1</Text>
+            </Row>
+            <Row>
+                <Icon icon="favorite" size="20" color="red"/>
+                <SizedBox width="5"/>
+                <Text>favourite2</Text>
+            </Row>
+            <Row>
+                <Icon icon="favorite" size="20" color="blue"/>
+                <SizedBox width="5"/>
+                <Text>favourite3</Text>
+            </Row>
+        </Column>
+    </Container>
+</Center>
